@@ -20,3 +20,18 @@ def kmean(data,classNum):
     estimator.fit(data)  # 聚类
     return estimator.cluster_centers_, estimator.labels_ #返回聚类中心和标签
 
+graRho=0.5 # 分辨系数
+
+def gra(data): # 使用前归一化，比较列放在第一行
+    m,n=data.shape
+    ck=data[:,0] # 第一列是参考列
+    bj=data[:,1:] # 比较列
+    m,n2=bj.shape # 求出比较列列数n2
+    for i in range(n2):
+        bj[:,i]=bj[:,i]-ck
+    absbj=np.abs(bj)
+    mn=np.min(absbj)
+    mx=np.max(absbj)
+    ksi= (mn + graRho * mx) / (absbj + graRho * mx) # 求关联系数
+    r=np.sum(ksi,axis=0)/m # 求关联度
+    return r
