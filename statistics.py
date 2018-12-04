@@ -1,5 +1,5 @@
 
-def entropy(): # 应传入归一化后数组
+def entropy(data): # 应传入归一化后数组
 	num,dim = data.shape
 	dimsum=data.sum(axis=0) # 不同维度所有数据的和
 	dataP=data/dimsum # 各个维度除和，创建权重矩阵
