@@ -18,5 +18,5 @@ def entropy(data): # 应传入归一化后数组
 def kmean(data,classNum):
     estimator = KMeans(n_clusters=classNum)  # 构造聚类器
     estimator.fit(data)  # 聚类
-    return estimator.labels_ #返回聚类标签
+    return estimator.cluster_centers_, estimator.labels_ #返回聚类中心和标签
 
