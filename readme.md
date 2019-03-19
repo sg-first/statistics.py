@@ -4,3 +4,4 @@
 * `numhelp.py`：基本统计算法（熵权法、K-mean、灰色关联度分析）
 * `pautaCriterion.py`：拉依达准则（一维形式和二维形式）
 * `load.py`：加载数据（加载csv数据）
+* `statsTest.py`：假设检验（z t检验）
