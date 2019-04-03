@@ -3,14 +3,25 @@ import scipy.stats as stats2
 
 alpha=0.05
 
-def z_test(x,mu):
-    z, p = stats1.ztest(x, value=mu)
+def z_test(x,mean):
+    z, p = stats1.ztest(x, value=mean)
     return p, p>alpha
 
-def t_test(x,mu):
-    t, p = stats2.ttest_1samp(x, popmean=mu)
+def t_test(x,mean):
+    t, p = stats2.ttest_1samp(x, popmean=mean)
     return p, p>alpha
 
-def t_test2(x1,x2):
-    t, p = stats2.ttest_ind(x1,x2)
+# 检验两个正态总体均值差
+def t_test2(x1,x2,eq_Var=True):
+    t, p = stats2.ttest_ind(x1,x2,equal_var=eq_Var)
     return p, p>alpha  # 如果p小，是拒绝原假设，认为二者不同，即可以通过该属性区分
+
+def chis2_test(x,exp=None):
+    s, p = stats2.chisquare(x,exp)
+    return p, p>alpha
+
+# 检验两个分布抽样有多大概率不存在差异（总体均值相等）
+def ranksum_test(x,y):
+    s, p = stats2.ranksums(x, y)
+    
+    return p, p>alpha # 如果p小，是拒绝原假设，认为二者不同
